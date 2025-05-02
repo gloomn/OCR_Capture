@@ -36,23 +36,57 @@ namespace OCR_Capture
             }
         }
 
-        private void extractButton_Click(object sender, EventArgs e)
+        private async void extractButton_Click(object sender, EventArgs e)
         {
+            progressBar1.Style = ProgressBarStyle.Continuous;
+            progressBar1.Minimum = 0;
+            progressBar1.Maximum = 100;
+            progressBar1.Value = 0;
+            progressBar1.Visible = true;
+
+            string result = "";
+
+            // 진행률 가짜로 증가시키는 타이머
+            var progressTimer = new System.Windows.Forms.Timer();
+            progressTimer.Interval = 50;
+            progressTimer.Tick += (s, args) =>
+            {
+                if (progressBar1.Value < 95)
+                    progressBar1.Value += 1;
+            };
+            progressTimer.Start();
+
             try
             {
-                using (Bitmap img = new Bitmap(filePathTextBox.Text))
+                await Task.Run(() =>
                 {
-                    using (var page = ocr.Process(img))
+                    using (Bitmap img = new Bitmap(filePathTextBox.Text))
                     {
-                        extractedText.Text = page.GetText();
+                        using (var page = ocr.Process(img))
+                        {
+                            result = page.GetText();
+                        }
                     }
-                }
+                });
+
+                extractedText.Text = result;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("오류 발생: " + ex.Message);
             }
+            finally
+            {
+                // 진행률 바로 100%로, 타이머 종료
+                progressTimer.Stop();
+                progressBar1.Value = 100;
+
+                // 약간 딜레이 후 숨김 (시각적 효과)
+                await Task.Delay(500);
+                progressBar1.Visible = false;
+            }
         }
+
 
     }
 }

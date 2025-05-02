@@ -35,6 +35,7 @@
             this.selectFolder = new System.Windows.Forms.Button();
             this.extractButton = new System.Windows.Forms.Button();
             this.copyright = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // extractedText
@@ -47,6 +48,7 @@
             this.extractedText.Location = new System.Drawing.Point(690, 12);
             this.extractedText.Multiline = true;
             this.extractedText.Name = "extractedText";
+            this.extractedText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.extractedText.Size = new System.Drawing.Size(476, 520);
             this.extractedText.TabIndex = 0;
             // 
@@ -84,12 +86,13 @@
             // 
             // extractButton
             // 
+            this.extractButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.extractButton.BackColor = System.Drawing.Color.CornflowerBlue;
             this.extractButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.extractButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.extractButton.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.extractButton.ForeColor = System.Drawing.Color.White;
-            this.extractButton.Location = new System.Drawing.Point(19, 459);
+            this.extractButton.Location = new System.Drawing.Point(19, 397);
             this.extractButton.Name = "extractButton";
             this.extractButton.Size = new System.Drawing.Size(604, 51);
             this.extractButton.TabIndex = 4;
@@ -109,12 +112,22 @@
             this.copyright.TabIndex = 5;
             this.copyright.Text = " ⓒ Lee Ki Joon 2025";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.BackColor = System.Drawing.Color.White;
+            this.progressBar1.Location = new System.Drawing.Point(19, 454);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(604, 34);
+            this.progressBar1.TabIndex = 6;
+            this.progressBar1.Visible = false;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1178, 544);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.copyright);
             this.Controls.Add(this.extractButton);
             this.Controls.Add(this.selectFolder);
@@ -137,6 +150,7 @@
         private System.Windows.Forms.Button selectFolder;
         private System.Windows.Forms.Button extractButton;
         private System.Windows.Forms.Label copyright;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
